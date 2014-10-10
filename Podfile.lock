@@ -12,6 +12,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FrameAccessor: 5eec95b29b5e9a3afe72a7a2e9ed25b000d3bcc3
-  SCITokenSearchField: 87267d1893ef2a796bf63143fb7fb73560d90e08
+  SCITokenSearchField: 544039f9e5324333b2dbda542df01dbf56f4caff
 
 COCOAPODS: 0.34.2

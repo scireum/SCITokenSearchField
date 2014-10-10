@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,18 +14,47 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LyR-eX-fyG" customClass="SCITokenSearchField">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbf-W0-HrE" customClass="SCITokenSearchField">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fbf-W0-HrE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Chz-hS-UWO"/>
+                            <constraint firstItem="fbf-W0-HrE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LXw-OY-0rs"/>
+                            <constraint firstItem="fbf-W0-HrE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="11" id="SM1-gz-Hl6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fbf-W0-HrE" secondAttribute="bottom" constant="609" id="mf9-I9-BQP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="fbf-W0-HrE"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Chz-hS-UWO"/>
+                                <exclude reference="LXw-OY-0rs"/>
+                                <exclude reference="SM1-gz-Hl6"/>
+                                <exclude reference="mf9-I9-BQP"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="fbf-W0-HrE"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Chz-hS-UWO"/>
+                                <include reference="LXw-OY-0rs"/>
+                                <include reference="SM1-gz-Hl6"/>
+                                <include reference="mf9-I9-BQP"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="tokenField" destination="LyR-eX-fyG" id="ydF-1x-Egr"/>
+                        <outlet property="tokenField" destination="fbf-W0-HrE" id="U9z-g6-dXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

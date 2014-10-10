@@ -25,6 +25,11 @@
     self.tokenField.placeholderText = NSLocalizedString(@"Enter names here", nil);
     [self.tokenField setColorScheme:[UIColor colorWithRed:61/255.0f green:149/255.0f blue:206/255.0f alpha:1.0f]];
     [self.tokenField becomeFirstResponder];
+
+    [self.tokenField.layer setBorderColor:[[UIColor clearColor] CGColor]];
+    [self.tokenField.layer setBorderWidth:0.5];
+    [[self.tokenField layer] setCornerRadius:5]; // radius of rounded corners
+    [self.tokenField setClipsToBounds: YES]; //clip text within the bounds
 }
 
 - (IBAction)didTapResignFirstResponderButton:(id)sender
@@ -58,6 +63,11 @@
 - (NSUInteger)numberOfTokensInTokenSearchField:(SCITokenSearchField *)tokenSearchField
 {
     return [self.names count];
+}
+
+- (void)clearTokenSearchFieldData:(SCITokenSearchField *)tokenSearchField {
+    [self.names removeAllObjects];
+    [tokenSearchField reloadData];
 }
 
 @end

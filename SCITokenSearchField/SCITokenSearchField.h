@@ -35,6 +35,7 @@
 @optional
 - (NSString *)tokenSearchField:(SCITokenSearchField *)tokenSearchField titleForTokenAtIndex:(NSUInteger)index;
 - (NSUInteger)numberOfTokensInTokenSearchField:(SCITokenSearchField *)tokenField;
+- (void)clearTokenSearchFieldData:(SCITokenSearchField *)tokenSearchField;
 @end
 
 

@@ -212,8 +212,6 @@
 			mainGroup = 43146B3F19E7FDB0007325A8;
 			productRefGroup = 43146B4919E7FDB0007325A8 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				43146B4719E7FDB0007325A8 /* SCITokenSearchFieldExample */,

@@ -26,11 +26,12 @@
 #import "VENToken.h"
 #import "VENBackspaceTextField.h"
 
-static const CGFloat VENTokenFieldDefaultVerticalInset      = 7.0;
-static const CGFloat VENTokenFieldDefaultHorizontalInset    = 15.0;
-static const CGFloat VENTokenFieldDefaultTokenPadding       = 2.0;
-static const CGFloat VENTokenFieldDefaultMinInputWidth      = 80.0;
-static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
+static const CGFloat SCITokenSearchFieldDefaultVerticalInset            = 0.0;
+static const CGFloat SCITokenSearchFieldDefaultHorizontalInset          = 5.0;
+static const CGFloat SCITokenSearchFieldDefaultTokenPadding             = 2.0;
+static const CGFloat SCITokenSearchFieldDefaultMinInputWidth            = 80.0;
+static const CGFloat SCITokenSearchFieldDefaultMaxHeight                = 150.0;
+static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
 
 
 @interface SCITokenSearchField () <VENBackspaceTextFieldDelegate>
@@ -42,6 +43,7 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
 @property (strong, nonatomic) VENBackspaceTextField *invisibleTextField;
 @property (strong, nonatomic) VENBackspaceTextField *inputTextField;
 @property (strong, nonatomic) UIColor *colorScheme;
+@property (strong, nonatomic) UIView *magnifyingGlassView;
 
 @end
 
@@ -77,11 +79,11 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
 - (void)setUpInit
 {
     // Set up default values.
-    self.maxHeight = VENTokenFieldDefaultMaxHeight;
-    self.verticalInset = VENTokenFieldDefaultVerticalInset;
-    self.horizontalInset = VENTokenFieldDefaultHorizontalInset;
-    self.tokenPadding = VENTokenFieldDefaultTokenPadding;
-    self.minInputWidth = VENTokenFieldDefaultMinInputWidth;
+    self.maxHeight = SCITokenSearchFieldDefaultMaxHeight;
+    self.verticalInset = SCITokenSearchFieldDefaultVerticalInset;
+    self.horizontalInset = SCITokenSearchFieldDefaultHorizontalInset;
+    self.tokenPadding = SCITokenSearchFieldDefaultTokenPadding;
+    self.minInputWidth = SCITokenSearchFieldDefaultMinInputWidth;
     self.colorScheme = [UIColor blueColor];
     self.inputTextFieldTextColor = [UIColor colorWithRed:38/255.0f green:39/255.0f blue:41/255.0f alpha:1.0f];
     
@@ -107,6 +109,7 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
     CGFloat currentX = 0;
     CGFloat currentY = 0;
 
+    [self layoutMagnifyingGlassInView:self origin:CGPointMake(self.horizontalInset, self.verticalInset) currentX:&currentX];
     [self layoutTokensWithCurrentX:&currentX currentY:&currentY];
     [self layoutInputTextFieldWithCurrentX:&currentX currentY:&currentY];
 
@@ -163,6 +166,24 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
 
     [self addSubview:self.scrollView];
 }
+
+- (void)layoutMagnifyingGlassInView:(UIView *)view origin:(CGPoint)origin currentX:(CGFloat *)currentX
+{
+    [self.magnifyingGlassView removeFromSuperview];
+    self.magnifyingGlassView = [self magnifyingGlassView];
+
+    CGRect newFrame = self.magnifyingGlassView.frame;
+    newFrame.origin = origin;
+
+    [self.magnifyingGlassView sizeToFit];
+    newFrame.size.width = CGRectGetWidth(self.magnifyingGlassView.frame);
+    newFrame.origin.y = newFrame.origin.y + (CGRectGetHeight(self.inputTextField.frame) / 2) - (CGRectGetHeight(newFrame) / 2);
+
+    self.magnifyingGlassView.frame = newFrame;
+    [view addSubview:self.magnifyingGlassView];
+    *currentX += self.magnifyingGlassView.hidden ? CGRectGetMinX(self.magnifyingGlassView.frame) : CGRectGetMaxX(self.magnifyingGlassView.frame) + SCITokenSearchFieldDefaultMagnifyingGlassPadding;
+}
+
 
 - (void)layoutInputTextFieldWithCurrentX:(CGFloat *)currentX currentY:(CGFloat *)currentY
 {
@@ -268,8 +289,33 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
         _inputTextField.delegate = self;
         _inputTextField.placeholder = self.placeholderText;
         [_inputTextField addTarget:self action:@selector(inputTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        UIImage *clearButtonImage = [UIImage imageNamed:@"clear_Button"];
+        UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [clearButton setImage:clearButtonImage forState:UIControlStateNormal];
+        [clearButton setFrame:CGRectMake(0, 0, clearButtonImage.size.width, clearButtonImage.size.width)];
+        [clearButton addTarget:self action:@selector(clearTextField:) forControlEvents:UIControlEventTouchUpInside];
+        UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, clearButtonImage.size.width + 1, clearButtonImage.size.height)];
+        [paddingView addSubview:clearButton];
+        _inputTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+        [_inputTextField setRightView:paddingView];
     }
     return _inputTextField;
+}
+
+- (void) clearTextField:(id)sender
+{
+    self.inputTextField.text = @"";
+    [self clearTokenSearchFieldData:self];
+}
+
+
+- (UIView *)magnifyingGlassView {
+    if(!_magnifyingGlassView){
+        UIImage *magnifyingGlassImage = [UIImage imageNamed:@"magnifying_glass"];
+        _magnifyingGlassView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, magnifyingGlassImage.size.width, magnifyingGlassImage.size.height)];
+        [_magnifyingGlassView setBackgroundColor:[UIColor colorWithPatternImage:magnifyingGlassImage]];
+    }
+    return _magnifyingGlassView;
 }
 
 - (void)setInputTextFieldKeyboardType:(UIKeyboardType)inputTextFieldKeyboardType
@@ -355,6 +401,14 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
     }
     return 0;
 }
+
+- (void)clearTokenSearchFieldData:(SCITokenSearchField *)tokenField
+{
+    if ([self.dataSource respondsToSelector:@selector(clearTokenSearchFieldData:)]) {
+        [self.dataSource clearTokenSearchFieldData:self];
+    }
+}
+
 
 #pragma mark - UITextFieldDelegate
 
