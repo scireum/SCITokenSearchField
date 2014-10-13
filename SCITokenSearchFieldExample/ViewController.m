@@ -23,6 +23,8 @@
     self.tokenField.delegate = self;
     self.tokenField.dataSource = self;
     self.tokenField.placeholderText = NSLocalizedString(@"Enter names here", nil);
+    self.tokenField.tokenSeparator = @"";
+    self.tokenField.useAlwaysBubblesForTokens = YES;
     [self.tokenField setColorScheme:[UIColor colorWithRed:61/255.0f green:149/255.0f blue:206/255.0f alpha:1.0f]];
     [self.tokenField becomeFirstResponder];
 

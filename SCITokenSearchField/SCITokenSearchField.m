@@ -32,17 +32,18 @@ static const CGFloat SCITokenSearchFieldDefaultTokenPadding             = 2.0;
 static const CGFloat SCITokenSearchFieldDefaultMinInputWidth            = 80.0;
 static const CGFloat SCITokenSearchFieldDefaultMaxHeight                = 150.0;
 static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
+static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 
 @interface SCITokenSearchField () <VENBackspaceTextFieldDelegate>
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) NSMutableArray *tokens;
-@property (assign, nonatomic) CGFloat originalHeight;
 @property (strong, nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 @property (strong, nonatomic) VENBackspaceTextField *invisibleTextField;
 @property (strong, nonatomic) VENBackspaceTextField *inputTextField;
 @property (strong, nonatomic) UIColor *colorScheme;
+@property (strong, nonatomic) UIColor *colorSchemeForBubbles;
 @property (strong, nonatomic) UIView *magnifyingGlassView;
 
 @end
@@ -82,12 +83,12 @@ static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
     self.maxHeight = SCITokenSearchFieldDefaultMaxHeight;
     self.verticalInset = SCITokenSearchFieldDefaultVerticalInset;
     self.horizontalInset = SCITokenSearchFieldDefaultHorizontalInset;
-    self.tokenPadding = SCITokenSearchFieldDefaultTokenPadding;
     self.minInputWidth = SCITokenSearchFieldDefaultMinInputWidth;
     self.colorScheme = [UIColor blueColor];
     self.inputTextFieldTextColor = [UIColor colorWithRed:38/255.0f green:39/255.0f blue:41/255.0f alpha:1.0f];
-    
-    self.originalHeight = CGRectGetHeight(self.frame);
+    self.colorSchemeForBubbles = [UIColor colorWithRed:160/255.0f green:203/255.0f blue:252/255.0f alpha:1.0f];
+    self.tokenSeparator = @",";
+    self.useAlwaysBubblesForTokens = NO;
 
     // Add invisible text field to handle backspace when we don't have a real first responder.
     [self layoutInvisibleTextField];
@@ -107,14 +108,10 @@ static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
     self.tokens = [NSMutableArray array];
 
     CGFloat currentX = 0;
-    CGFloat currentY = 0;
 
     [self layoutMagnifyingGlassInView:self origin:CGPointMake(self.horizontalInset, self.verticalInset) currentX:&currentX];
-    [self layoutTokensWithCurrentX:&currentX currentY:&currentY];
-    [self layoutInputTextFieldWithCurrentX:&currentX currentY:&currentY];
-
-    [self adjustHeightForCurrentY:currentY];
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.contentSize.width, currentY + [self heightForToken])];
+    [self layoutTokensWithCurrentX:&currentX];
+    [self layoutInputTextFieldWithCurrentX:&currentX];
 
     [self updateInputTextField];
 
@@ -146,6 +143,14 @@ static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
     }
 }
 
+- (void)setColorSchemeForBubbles:(UIColor *)color
+{
+    _colorSchemeForBubbles = color;
+    for (VENToken *token in self.tokens) {
+        [token setColorSchemeForBubbles:color];
+    }
+}
+
 - (NSString *)inputText
 {
     return self.inputTextField.text;
@@ -155,15 +160,14 @@ static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
 
 - (void)layoutScrollView
 {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.magnifyingGlassView.frame) + SCITokenSearchFieldDefaultMagnifyingGlassPadding + SCITokenSearchFieldDefaultTokenPadding, 0, CGRectGetWidth(self.frame) - self.magnifyingGlassView.width - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultHorizontalInset, CGRectGetHeight(self.frame))];
     self.scrollView.scrollsToTop = NO;
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) - self.horizontalInset * 2, CGRectGetHeight(self.frame) - self.verticalInset * 2);
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.frame) - self.verticalInset * 2);
     self.scrollView.contentInset = UIEdgeInsetsMake(self.verticalInset,
                                                     self.horizontalInset,
                                                     self.verticalInset,
                                                     self.horizontalInset);
-    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:self.scrollView];
 }
 
@@ -181,53 +185,43 @@ static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
 
     self.magnifyingGlassView.frame = newFrame;
     [view addSubview:self.magnifyingGlassView];
-    *currentX += self.magnifyingGlassView.hidden ? CGRectGetMinX(self.magnifyingGlassView.frame) : CGRectGetMaxX(self.magnifyingGlassView.frame) + SCITokenSearchFieldDefaultMagnifyingGlassPadding;
+    *currentX += self.magnifyingGlassView.hidden ? CGRectGetMinX(self.magnifyingGlassView.frame) : CGRectGetMinX(self.magnifyingGlassView.frame) + SCITokenSearchFieldDefaultMagnifyingGlassPadding;
 }
 
 
-- (void)layoutInputTextFieldWithCurrentX:(CGFloat *)currentX currentY:(CGFloat *)currentY
+- (void)layoutInputTextFieldWithCurrentX:(CGFloat *)currentX
 {
-    CGFloat inputTextFieldWidth = self.scrollView.contentSize.width - *currentX;
-    if (inputTextFieldWidth < self.minInputWidth) {
-        inputTextFieldWidth = self.scrollView.contentSize.width;
-        *currentY += [self heightForToken];
-        *currentX = 0;
-    }
+    CGFloat inputTextFieldWidth = self.scrollView.contentSize.width - *currentX - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultBubblePadding;
 
     VENBackspaceTextField *inputTextField = self.inputTextField;
     inputTextField.text = @"";
-    inputTextField.frame = CGRectMake(*currentX, *currentY + 1, inputTextFieldWidth, [self heightForToken] - 1);
+    inputTextField.frame = CGRectMake(*currentX, 0, inputTextFieldWidth, [self heightForToken] - 1);
     inputTextField.tintColor = self.colorScheme;
     [self.scrollView addSubview:inputTextField];
 }
 
-- (void)layoutTokensWithCurrentX:(CGFloat *)currentX currentY:(CGFloat *)currentY
+- (void)layoutTokensWithCurrentX:(CGFloat *)currentX
 {
     for (NSUInteger i = 0; i < [self numberOfTokens]; i++) {
         NSString *title = [self titleForTokenAtIndex:i];
         VENToken *token = [[VENToken alloc] init];
+        token.useAlwaysBubblesForTokens = self.useAlwaysBubblesForTokens;
         token.colorScheme = self.colorScheme;
+        token.colorSchemeForBubbles = self.colorSchemeForBubbles;
 
         __weak VENToken *weakToken = token;
         token.didTapTokenBlock = ^{
             [self didTapToken:weakToken];
         };
 
-        [token setTitleText:[NSString stringWithFormat:@"%@,", title]];
+        [token setTitleText:[NSString stringWithFormat:@"%@%@", title, self.tokenSeparator]];
         [self.tokens addObject:token];
 
-        if (*currentX + token.width <= self.scrollView.contentSize.width) { // token fits in current line
-            token.frame = CGRectMake(*currentX, *currentY, token.width, token.height);
-        } else {
-            *currentY += token.height;
-            *currentX = 0;
-            CGFloat tokenWidth = token.width;
-            if (tokenWidth > self.scrollView.contentSize.width) { // token is wider than max width
-                tokenWidth = self.scrollView.contentSize.width;
-            }
-            token.frame = CGRectMake(*currentX, *currentY, tokenWidth, token.height);
+        token.frame = CGRectMake(*currentX, 0, token.width, token.height);
+        *currentX += token.width + SCITokenSearchFieldDefaultTokenPadding + (self.useAlwaysBubblesForTokens ? SCITokenSearchFieldDefaultBubblePadding : 0.0);
+        if (*currentX + token.width >= self.scrollView.contentSize.width) {
+            [self.scrollView setContentSizeWidth:*currentX + self.minInputWidth];
         }
-        *currentX += token.width + self.tokenPadding;
         [self.scrollView addSubview:token];
     }
 }
@@ -256,23 +250,6 @@ static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
     [self.inputTextField becomeFirstResponder];
     if ([self.delegate respondsToSelector:@selector(tokenSearchFieldDidBeginEditing:)]) {
         [self.delegate tokenSearchFieldDidBeginEditing:self];
-    }
-}
-
-- (void)adjustHeightForCurrentY:(CGFloat)currentY
-{
-    if (currentY + [self heightForToken] > CGRectGetHeight(self.frame)) { // needs to grow
-        if (currentY + [self heightForToken] <= self.maxHeight) {
-            [self setHeight:currentY + [self heightForToken] + self.verticalInset * 2];
-        } else {
-            [self setHeight:self.maxHeight];
-        }
-    } else { // needs to shrink
-        if (currentY + [self heightForToken] > self.originalHeight) {
-            [self setHeight:currentY + [self heightForToken] + self.verticalInset * 2];
-        } else {
-            [self setHeight:self.originalHeight];
-        }
     }
 }
 
@@ -444,6 +421,11 @@ static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
         BOOL didDeleteToken = NO;
         for (VENToken *token in self.tokens) {
             if (token.highlighted) {
+                if(self.scrollView.contentSize.width - token.width < self.width){
+                    [self.scrollView setContentSizeWidth:CGRectGetWidth(self.frame) - self.magnifyingGlassView.width - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultHorizontalInset];
+                }else {
+                    [self.scrollView setContentSizeWidth:self.scrollView.contentSize.width - token.width];
+                }
                 [self.delegate tokenSearchField:self didDeleteTokenAtIndex:[self.tokens indexOfObject:token]];
                 didDeleteToken = YES;
                 break;

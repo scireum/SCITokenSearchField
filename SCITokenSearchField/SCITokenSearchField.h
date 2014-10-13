@@ -56,14 +56,16 @@
 @property (assign, nonatomic) CGFloat maxHeight;
 @property (assign, nonatomic) CGFloat verticalInset;
 @property (assign, nonatomic) CGFloat horizontalInset;
-@property (assign, nonatomic) CGFloat tokenPadding;
 @property (assign, nonatomic) CGFloat minInputWidth;
 
 @property (assign, nonatomic) UIKeyboardType inputTextFieldKeyboardType;
 @property (strong, nonatomic) UIColor *inputTextFieldTextColor;
 @property (copy, nonatomic) NSString *placeholderText;
+@property (copy, nonatomic) NSString *tokenSeparator;
+@property (assign, nonatomic) BOOL useAlwaysBubblesForTokens;
 
 - (void)setColorScheme:(UIColor *)color;
+- (void)setColorSchemeForBubbles:(UIColor *)color;
 
 @end
 

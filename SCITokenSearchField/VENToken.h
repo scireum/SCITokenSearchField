@@ -25,8 +25,10 @@
 @interface VENToken : UIView
 
 @property (assign, nonatomic) BOOL highlighted;
+@property (assign, nonatomic) BOOL useAlwaysBubblesForTokens;
 @property (copy, nonatomic) void (^didTapTokenBlock) (void);
 @property (strong, nonatomic) UIColor *colorScheme;
+@property (strong, nonatomic) UIColor *colorSchemeForBubbles;
 
 - (void)setTitleText:(NSString *)text;
 
