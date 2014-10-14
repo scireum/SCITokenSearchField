@@ -252,7 +252,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
         _inputTextField = [[VENBackspaceTextField alloc] init];
         [_inputTextField setKeyboardType:self.inputTextFieldKeyboardType];
         _inputTextField.textColor = self.inputTextFieldTextColor;
-        _inputTextField.font = [UIFont fontWithName:@"HelveticaNeue" size:15.5];
+        _inputTextField.font = [UIFont systemFontOfSize:14.0];
         _inputTextField.accessibilityLabel = NSLocalizedString(@"To", nil);
         _inputTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _inputTextField.tintColor = self.colorScheme;
@@ -268,6 +268,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
         [paddingView addSubview:clearButton];
         _inputTextField.rightViewMode = UITextFieldViewModeWhileEditing;
         [_inputTextField setRightView:paddingView];
+        NSLog(@"xxxx %@", _inputTextField.font);
     }
     return _inputTextField;
 }
