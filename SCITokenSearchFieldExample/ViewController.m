@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "SCITokenSearchField.h"
+#import "SCITokenSearchField.h"#import "ViewFrameAccessor.h"
 
 @interface ViewController () <SCITokenSearchFieldDelegate, SCITokenSearchFieldDataSource>
 @property (weak, nonatomic) IBOutlet SCITokenSearchField *tokenField;
+@property (strong, nonatomic) SCITokenSearchField *navSearchBar;
 @property (strong, nonatomic) NSMutableArray *names;
+@property (strong, nonatomic) NSMutableArray *namesSearchbar;
 @end
 
 @implementation ViewController
@@ -20,6 +22,30 @@
 {
     [super viewDidLoad];
     self.names = [NSMutableArray array];
+    self.namesSearchbar = [NSMutableArray array];
+
+    self.navSearchBar = [[SCITokenSearchField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    self.navSearchBar.tag = 1;
+    self.navSearchBar.delegate = self;
+    self.navSearchBar.dataSource = self;
+    self.navSearchBar.placeholderText = NSLocalizedString(@"Enter names here", nil);
+    self.navSearchBar.tokenSeparator = @"";
+    self.navSearchBar.useAlwaysBubblesForTokens = YES;
+    self.navSearchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+    UIView *searchBarContainer = [[UIView alloc] initWithFrame:self.navSearchBar.frame];
+    [searchBarContainer addSubview:self.navSearchBar];
+    UIBarButtonItem *searchBarItem = [[UIBarButtonItem alloc] initWithCustomView:searchBarContainer];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:1];
+    [items addObject:searchBarItem];
+    self.navigationItem.rightBarButtonItems = items;
+    [self.navSearchBar becomeFirstResponder];
+    [[self.navSearchBar layer] setBorderColor:[[UIColor clearColor] CGColor]];
+    [[self.navSearchBar layer] setBorderWidth:1]; // border width
+    [[self.navSearchBar layer] setCornerRadius:5]; // radius of rounded corners
+    [[self.navSearchBar layer] setBackgroundColor:[[UIColor whiteColor] CGColor]];
+
+    self.tokenField.tag = 2;
     self.tokenField.delegate = self;
     self.tokenField.dataSource = self;
     self.tokenField.placeholderText = NSLocalizedString(@"Enter names here", nil);
@@ -32,6 +58,7 @@
     [self.tokenField.layer setBorderWidth:0.5];
     [[self.tokenField layer] setCornerRadius:5]; // radius of rounded corners
     [self.tokenField setClipsToBounds: YES]; //clip text within the bounds
+
 }
 
 - (IBAction)didTapResignFirstResponderButton:(id)sender
@@ -44,14 +71,14 @@
 
 - (void)tokenSearchField:(SCITokenSearchField *)tokenSearchField didEnterText:(NSString *)text
 {
-    [self.names addObject:text];
-    [self.tokenField reloadData];
+    tokenSearchField.tag == 1 ? [self.namesSearchbar addObject:text] : [self.names addObject:text];
+    [tokenSearchField reloadData];
 }
 
 - (void)tokenSearchField:(SCITokenSearchField *)tokenSearchField didDeleteTokenAtIndex:(NSUInteger)index
 {
-    [self.names removeObjectAtIndex:index];
-    [self.tokenField reloadData];
+    tokenSearchField.tag == 1 ? [self.namesSearchbar removeObjectAtIndex:index] : [self.names removeObjectAtIndex:index];
+    [tokenSearchField reloadData];
 }
 
 
@@ -59,16 +86,17 @@
 
 - (NSString *)tokenSearchField:(SCITokenSearchField *)tokenSearchField titleForTokenAtIndex:(NSUInteger)index
 {
-    return self.names[index];
+    return tokenSearchField.tag == 1 ? self.namesSearchbar[index] : self.names[index];
+
 }
 
 - (NSUInteger)numberOfTokensInTokenSearchField:(SCITokenSearchField *)tokenSearchField
 {
-    return [self.names count];
+    return tokenSearchField.tag == 1 ? [self.namesSearchbar count] : [self.names count];
 }
 
 - (void)clearTokenSearchFieldData:(SCITokenSearchField *)tokenSearchField {
-    [self.names removeAllObjects];
+    tokenSearchField.tag == 1 ? [self.namesSearchbar removeAllObjects] : [self.names removeAllObjects];
     [tokenSearchField reloadData];
 }
 

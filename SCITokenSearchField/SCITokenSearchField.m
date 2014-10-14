@@ -1,4 +1,4 @@
-// VENTokenField.m
+// SCITokenSearchField.m
 //
 // Copyright (c) 2014 scireum GmbH
 //
@@ -29,8 +29,7 @@
 static const CGFloat SCITokenSearchFieldDefaultVerticalInset            = 0.0;
 static const CGFloat SCITokenSearchFieldDefaultHorizontalInset          = 5.0;
 static const CGFloat SCITokenSearchFieldDefaultTokenPadding             = 2.0;
-static const CGFloat SCITokenSearchFieldDefaultMinInputWidth            = 80.0;
-static const CGFloat SCITokenSearchFieldDefaultMaxHeight                = 150.0;
+static const CGFloat SCITokenSearchFieldDefaultMinInputWidth            = 50.0;
 static const CGFloat SCITokenSearchFieldDefaultMagnifyingGlassPadding   = 2.0;
 static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
@@ -80,10 +79,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 - (void)setUpInit
 {
     // Set up default values.
-    self.maxHeight = SCITokenSearchFieldDefaultMaxHeight;
-    self.verticalInset = SCITokenSearchFieldDefaultVerticalInset;
-    self.horizontalInset = SCITokenSearchFieldDefaultHorizontalInset;
-    self.minInputWidth = SCITokenSearchFieldDefaultMinInputWidth;
     self.colorScheme = [UIColor blueColor];
     self.inputTextFieldTextColor = [UIColor colorWithRed:38/255.0f green:39/255.0f blue:41/255.0f alpha:1.0f];
     self.colorSchemeForBubbles = [UIColor colorWithRed:160/255.0f green:203/255.0f blue:252/255.0f alpha:1.0f];
@@ -109,7 +104,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
     CGFloat currentX = 0;
 
-    [self layoutMagnifyingGlassInView:self origin:CGPointMake(self.horizontalInset, self.verticalInset) currentX:&currentX];
+    [self layoutMagnifyingGlassInView:self origin:CGPointMake(SCITokenSearchFieldDefaultHorizontalInset, SCITokenSearchFieldDefaultVerticalInset) currentX:&currentX];
     [self layoutTokensWithCurrentX:&currentX];
     [self layoutInputTextFieldWithCurrentX:&currentX];
 
@@ -117,8 +112,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
     if (inputFieldShouldBecomeFirstResponder) {
         [self inputTextFieldBecomeFirstResponder];
-    } else {
-        [self focusInputTextField];
     }
 }
 
@@ -162,11 +155,11 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 {
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.magnifyingGlassView.frame) + SCITokenSearchFieldDefaultMagnifyingGlassPadding + SCITokenSearchFieldDefaultTokenPadding, 0, CGRectGetWidth(self.frame) - self.magnifyingGlassView.width - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultHorizontalInset, CGRectGetHeight(self.frame))];
     self.scrollView.scrollsToTop = NO;
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.frame) - self.verticalInset * 2);
-    self.scrollView.contentInset = UIEdgeInsetsMake(self.verticalInset,
-                                                    self.horizontalInset,
-                                                    self.verticalInset,
-                                                    self.horizontalInset);
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.frame) - SCITokenSearchFieldDefaultVerticalInset * 2);
+    self.scrollView.contentInset = UIEdgeInsetsMake(SCITokenSearchFieldDefaultVerticalInset,
+            SCITokenSearchFieldDefaultHorizontalInset,
+            SCITokenSearchFieldDefaultVerticalInset,
+            SCITokenSearchFieldDefaultHorizontalInset);
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:self.scrollView];
 }
@@ -219,8 +212,8 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
         token.frame = CGRectMake(*currentX, 0, token.width, token.height);
         *currentX += token.width + SCITokenSearchFieldDefaultTokenPadding + (self.useAlwaysBubblesForTokens ? SCITokenSearchFieldDefaultBubblePadding : 0.0);
-        if (*currentX + token.width >= self.scrollView.contentSize.width) {
-            [self.scrollView setContentSizeWidth:*currentX + self.minInputWidth];
+        if (*currentX + token.width + SCITokenSearchFieldDefaultMinInputWidth >= self.scrollView.contentSize.width) {
+            [self.scrollView setContentSizeWidth:*currentX + token.width + SCITokenSearchFieldDefaultMinInputWidth];
         }
         [self.scrollView addSubview:token];
     }
@@ -350,16 +343,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 {
     self.inputTextField.placeholder = [self.tokens count] ? nil : self.placeholderText;
 }
-
-- (void)focusInputTextField
-{
-    CGPoint contentOffset = self.scrollView.contentOffset;
-    CGFloat targetY = self.inputTextField.y + [self heightForToken] - self.maxHeight;
-    if (targetY > contentOffset.y) {
-        [self.scrollView setContentOffset:CGPointMake(contentOffset.x, targetY) animated:NO];
-    }
-}
-
 
 #pragma mark - Data Source
 

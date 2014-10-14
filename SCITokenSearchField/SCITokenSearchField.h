@@ -1,4 +1,4 @@
-// VENTokenField.h
+// SCITokenSearchField.h
 //
 // Copyright (c) 2014 scireum GmbH
 //
@@ -52,11 +52,6 @@
  * @name Customization
  * -----------------------------------------------------------------------------
  */
-
-@property (assign, nonatomic) CGFloat maxHeight;
-@property (assign, nonatomic) CGFloat verticalInset;
-@property (assign, nonatomic) CGFloat horizontalInset;
-@property (assign, nonatomic) CGFloat minInputWidth;
 
 @property (assign, nonatomic) UIKeyboardType inputTextFieldKeyboardType;
 @property (strong, nonatomic) UIColor *inputTextFieldTextColor;
