@@ -268,7 +268,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
         [paddingView addSubview:clearButton];
         _inputTextField.rightViewMode = UITextFieldViewModeWhileEditing;
         [_inputTextField setRightView:paddingView];
-        NSLog(@"xxxx %@", _inputTextField.font);
     }
     return _inputTextField;
 }
