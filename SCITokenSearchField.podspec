@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = 'SCITokenSearchField'
   s.version      = '1.0.0'
-  s.summary      = ''
-  s.description   = <<-DESC
-
-                   DESC
+  s.summary      = 'Token SearchField'
+  s.description  = <<-DESC
+                 Token field with UISearchBar look.
+                 DESC
   s.homepage     = 'https://github.com/scireum/SCITokenSearchField'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { 'scireum' => 'info+dev@scireum.de'}
