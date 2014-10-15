@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/scireum/SCITokenSearchField'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { 'scireum' => 'info+dev@scireum.de'}
-  s.source       = { :git => 'https://github.com/scireum/SCITokenSearchField.git', :tag => "v#{s.version}" }
+  s.source       = { :git => 'https://github.com/scireum/SCITokenSearchField.git', :tag => "#{s.version}" }
   s.source_files = 'SCITokenSearchField/**/*.{h,m}'
   s.resources   = ["SCITokenSearchField/**/*.{xib,png}"]
   s.dependency 'FrameAccessor', '~> 1.0'
