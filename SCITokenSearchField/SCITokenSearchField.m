@@ -55,6 +55,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     self = [super initWithFrame:frame];
     if (self) {
         [self setUpInit];
+        [self reloadData];
     }
     return self;
 }
@@ -62,6 +63,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 - (void)awakeFromNib
 {
     [self setUpInit];
+    [self reloadData];
 }
 
 - (BOOL)becomeFirstResponder

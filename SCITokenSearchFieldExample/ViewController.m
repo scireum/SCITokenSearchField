@@ -39,7 +39,6 @@
     NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:1];
     [items addObject:searchBarItem];
     self.navigationItem.rightBarButtonItems = items;
-    [self.navSearchBar becomeFirstResponder];
     [[self.navSearchBar layer] setBorderColor:[[UIColor clearColor] CGColor]];
     [[self.navSearchBar layer] setBorderWidth:1]; // border width
     [[self.navSearchBar layer] setCornerRadius:5]; // radius of rounded corners
