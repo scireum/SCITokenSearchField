@@ -4,7 +4,7 @@ SCITokenSearchField
 
 ```SCITokenSearchField``` is based on [VENTokenField](https://github.com/venmo/VENTokenField) but has the look of the native UISearchBar.
 
-![alt text](http://i.imgur.com/vOXwMvo.gif "SCITokenSearchField demo")
+![alt text](SCITokenSearchField.gif "SCITokenSearchField demo")
 
 Installation
 ------------
