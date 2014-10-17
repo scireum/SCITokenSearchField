@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "SCITokenSearchField.h"#import "ViewFrameAccessor.h"
+#import "SCITokenSearchField.h"
 
 @interface ViewController () <SCITokenSearchFieldDelegate, SCITokenSearchFieldDataSource>
 @property (weak, nonatomic) IBOutlet SCITokenSearchField *tokenField;
