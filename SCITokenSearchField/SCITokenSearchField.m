@@ -44,6 +44,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 @property (strong, nonatomic) UIColor *colorScheme;
 @property (strong, nonatomic) UIColor *colorSchemeForBubbles;
 @property (strong, nonatomic) UIView *magnifyingGlassView;
+@property (nonatomic) CGFloat originWidth;
 
 @end
 
@@ -78,9 +79,23 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     return [self.inputTextField resignFirstResponder];
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:)name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+-(void)removeFromSuperview {
+    {
+        [super removeFromSuperview];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    }
+}
+
 - (void)setUpInit
 {
     // Set up default values.
+    self.originWidth = self.width;
     self.colorScheme = [UIColor blueColor];
     self.inputTextFieldTextColor = [UIColor colorWithRed:38/255.0f green:39/255.0f blue:41/255.0f alpha:1.0f];
     self.colorSchemeForBubbles = [UIColor colorWithRed:160/255.0f green:203/255.0f blue:252/255.0f alpha:1.0f];
@@ -164,6 +179,11 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
             SCITokenSearchFieldDefaultHorizontalInset);
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:self.scrollView];
+}
+
+- (void) updateScrollViewSize
+{
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) - self.magnifyingGlassView.width - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultHorizontalInset, CGRectGetHeight(self.frame) - SCITokenSearchFieldDefaultVerticalInset * 2);
 }
 
 - (void)layoutMagnifyingGlassInView:(UIView *)view origin:(CGPoint)origin currentX:(CGFloat *)currentX
@@ -260,6 +280,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
         _inputTextField.tintColor = self.colorScheme;
         _inputTextField.delegate = self;
         _inputTextField.placeholder = self.placeholderText;
+        _inputTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [_inputTextField addTarget:self action:@selector(inputTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         UIImage *clearButtonImage = [UIImage imageNamed:@"clear_Button"];
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -422,6 +443,20 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
             lastToken.highlighted = YES;
         }
         [self setCursorVisibility];
+    }
+}
+
+#pragma mark - Screen rotation listener
+- (void)deviceOrientationDidChange:(NSNotification *)notification {
+    [self reloadData];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    if(self.originWidth != self.width){
+        [self updateScrollViewSize];
+        self.originWidth = self.width;
     }
 }
 
