@@ -448,7 +448,9 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 #pragma mark - Screen rotation listener
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
+    NSString *textFieldContent = self.inputText;
     [self reloadData];
+    self.inputTextField.text = textFieldContent;
 }
 
 - (void)layoutSubviews
