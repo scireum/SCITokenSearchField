@@ -56,7 +56,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     self = [super initWithFrame:frame];
     if (self) {
         [self setUpInit];
-        [self reloadData];
     }
     return self;
 }
@@ -64,7 +63,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 - (void)awakeFromNib
 {
     [self setUpInit];
-    [self reloadData];
 }
 
 - (BOOL)becomeFirstResponder
@@ -196,7 +194,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
     [self.magnifyingGlassView sizeToFit];
     newFrame.size.width = CGRectGetWidth(self.magnifyingGlassView.frame);
-    newFrame.origin.y = newFrame.origin.y + (CGRectGetHeight(self.inputTextField.frame) / 2) - (CGRectGetHeight(newFrame) / 2);
+    newFrame.origin.y = newFrame.origin.y + ([self heightForTextField] / 2) - (CGRectGetHeight(newFrame) / 2);
 
     self.magnifyingGlassView.frame = newFrame;
     [view addSubview:self.magnifyingGlassView];
@@ -210,7 +208,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
     VENBackspaceTextField *inputTextField = self.inputTextField;
     inputTextField.text = @"";
-    inputTextField.frame = CGRectMake(*currentX, 0, inputTextFieldWidth, [self heightForToken] - 1);
+    inputTextField.frame = CGRectMake(*currentX, 0, inputTextFieldWidth, [self heightForTextField]);
     inputTextField.tintColor = self.colorScheme;
     [self.scrollView addSubview:inputTextField];
 }
@@ -247,6 +245,11 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 - (CGFloat)heightForToken
 {
     return 30;
+}
+
+- (CGFloat)heightForTextField
+{
+    return [self heightForToken] - 1;
 }
 
 - (void)layoutInvisibleTextField
