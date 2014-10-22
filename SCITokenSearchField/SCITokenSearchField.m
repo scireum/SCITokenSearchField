@@ -304,7 +304,10 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 {
     self.ignoreTokenSearchFieldDidBeginEditing = YES;
     self.inputTextField.text = @"";
-    [self clearTokenSearchFieldData:self];
+    [self.scrollView setContentSizeWidth:CGRectGetWidth(self.frame) - self.magnifyingGlassView.width - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultHorizontalInset];
+    if ([self.dataSource respondsToSelector:@selector(clearTokenSearchFieldData:)]) {
+        [self.dataSource clearTokenSearchFieldData:self];
+    }
 }
 
 
@@ -385,15 +388,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     }
     return 0;
 }
-
-- (void)clearTokenSearchFieldData:(SCITokenSearchField *)tokenField
-{
-    [self.scrollView setContentSizeWidth:CGRectGetWidth(self.frame) - self.magnifyingGlassView.width - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultHorizontalInset];
-    if ([self.dataSource respondsToSelector:@selector(clearTokenSearchFieldData:)]) {
-        [self.dataSource clearTokenSearchFieldData:self];
-    }
-}
-
 
 #pragma mark - UITextFieldDelegate
 
