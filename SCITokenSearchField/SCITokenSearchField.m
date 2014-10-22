@@ -45,6 +45,8 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 @property (strong, nonatomic) UIColor *colorSchemeForBubbles;
 @property (strong, nonatomic) UIView *magnifyingGlassView;
 @property (nonatomic) CGFloat originWidth;
+@property (nonatomic, assign) BOOL ignoreTokenSearchFieldDidBeginEditing;
+@property (nonatomic, assign) BOOL shouldTokenSearchFieldDidBeginEditingCalled;
 
 @end
 
@@ -68,6 +70,9 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 - (BOOL)becomeFirstResponder
 {
     [self inputTextFieldBecomeFirstResponder];
+    if ([self.delegate respondsToSelector:@selector(tokenSearchFieldDidBeginEditing:)]) {
+        [self.delegate tokenSearchFieldDidBeginEditing:self];
+    }
     return YES;
 }
 
@@ -92,6 +97,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 - (void)setUpInit
 {
     // Set up default values.
+    self.shouldTokenSearchFieldDidBeginEditingCalled = YES;
     self.originWidth = self.width;
     self.colorScheme = [UIColor blueColor];
     self.inputTextFieldTextColor = [UIColor colorWithRed:38/255.0f green:39/255.0f blue:41/255.0f alpha:1.0f];
@@ -265,9 +271,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     }
 
     [self.inputTextField becomeFirstResponder];
-    if ([self.delegate respondsToSelector:@selector(tokenSearchFieldDidBeginEditing:)]) {
-        [self.delegate tokenSearchFieldDidBeginEditing:self];
-    }
 }
 
 - (VENBackspaceTextField *)inputTextField
@@ -299,6 +302,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 - (void) clearTextField:(id)sender
 {
+    self.ignoreTokenSearchFieldDidBeginEditing = YES;
     self.inputTextField.text = @"";
     [self clearTokenSearchFieldData:self];
 }
@@ -395,6 +399,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    self.ignoreTokenSearchFieldDidBeginEditing = YES;
     if ([self.delegate respondsToSelector:@selector(tokenSearchField:didEnterText:)]) {
         if ([textField.text length]) {
             [self.delegate tokenSearchField:self didEnterText:textField.text];
@@ -405,8 +410,15 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    self.ignoreTokenSearchFieldDidBeginEditing = NO;
     if (textField == self.inputTextField) {
         [self unhighlightAllTokens];
+    }
+    if(self.shouldTokenSearchFieldDidBeginEditingCalled){
+        if ([self.delegate respondsToSelector:@selector(tokenSearchFieldDidBeginEditing:)]) {
+            [self.delegate tokenSearchFieldDidBeginEditing:self];
+        }
+        self.shouldTokenSearchFieldDidBeginEditingCalled = NO;
     }
 }
 
@@ -416,6 +428,10 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.shouldTokenSearchFieldDidBeginEditingCalled = !self.ignoreTokenSearchFieldDidBeginEditing;
+}
 
 #pragma mark - VENBackspaceTextFieldDelegate
 
