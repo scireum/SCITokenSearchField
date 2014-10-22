@@ -67,7 +67,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 - (BOOL)becomeFirstResponder
 {
-    [self reloadData];
     [self inputTextFieldBecomeFirstResponder];
     return YES;
 }
@@ -325,11 +324,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     if ([self.delegate respondsToSelector:@selector(tokenSearchField:didChangeText:)]) {
         [self.delegate tokenSearchField:self didChangeText:textField.text];
     }
-}
-
-- (void)handleSingleTap:(UITapGestureRecognizer *)gestureRecognizer
-{
-    [self becomeFirstResponder];
 }
 
 - (void)didTapToken:(VENToken *)token
