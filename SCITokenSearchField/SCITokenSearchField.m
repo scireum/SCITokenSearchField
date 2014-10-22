@@ -302,7 +302,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 - (void) clearTextField:(id)sender
 {
-    self.ignoreTokenSearchFieldDidBeginEditing = YES;
     self.inputTextField.text = @"";
     [self.scrollView setContentSizeWidth:CGRectGetWidth(self.frame) - self.magnifyingGlassView.width - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultHorizontalInset];
     if ([self.dataSource respondsToSelector:@selector(clearTokenSearchFieldData:)]) {
