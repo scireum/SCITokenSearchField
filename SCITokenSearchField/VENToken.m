@@ -51,7 +51,6 @@
 - (void)setTitleText:(NSString *)text
 {
     self.titleLabel.text = text;
-    self.titleLabel.textColor = self.colorScheme;
     [self.titleLabel sizeToFit];
     self.frame = CGRectMake(CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), CGRectGetMaxX(self.titleLabel.frame) + 3, CGRectGetHeight(self.frame));
     [self.titleLabel sizeToFit];
@@ -69,10 +68,20 @@
 - (void)setColorScheme:(UIColor *)colorScheme
 {
     _colorScheme = colorScheme;
-    self.titleLabel.textColor = self.colorScheme;
     [self setHighlighted:_highlighted];
 }
 
+- (void)setColorSchemeForBubbles:(UIColor *)colorSchemeForBubbles
+{
+    _colorSchemeForBubbles = colorSchemeForBubbles;
+    [self setHighlighted:_highlighted];
+}
+
+- (void)setUseAlwaysBubblesForTokens:(BOOL)useAlwaysBubblesForTokens
+{
+    _useAlwaysBubblesForTokens = useAlwaysBubblesForTokens;
+    [self setHighlighted:_highlighted];
+}
 
 #pragma mark - Private
 
