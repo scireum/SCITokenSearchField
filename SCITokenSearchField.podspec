@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'SCITokenSearchField'
-  s.version      = '1.0.3'
+  s.version      = '1.0.4'
   s.summary      = 'Token SearchField'
   s.description  = <<-DESC
                  Token field with UISearchBar look.
