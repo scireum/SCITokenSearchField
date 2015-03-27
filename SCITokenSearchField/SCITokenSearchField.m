@@ -52,7 +52,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 
 @implementation SCITokenSearchField
-@synthesize enabled;
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -456,7 +455,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     return self.inputTextField.enabled;
 }
 
-- (void) setEnabled:(BOOL)xenabled {
+- (void) setEnabled:(BOOL)enabled {
     self.inputTextField.enabled = enabled;
 }
 
