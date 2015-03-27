@@ -52,7 +52,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 
 @implementation SCITokenSearchField
-
+@synthesize enabled;
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -450,6 +450,14 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
         }
         [self setCursorVisibility];
     }
+}
+
+- (BOOL)isEnabled {
+    return self.inputTextField.enabled;
+}
+
+- (void) setEnabled:(BOOL)xenabled {
+    self.inputTextField.enabled = enabled;
 }
 
 #pragma mark - Screen rotation listener

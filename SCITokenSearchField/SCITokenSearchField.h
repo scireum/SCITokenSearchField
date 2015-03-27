@@ -43,6 +43,7 @@
 
 @property (weak, nonatomic) id<SCITokenSearchFieldDelegate> delegate;
 @property (weak, nonatomic) id<SCITokenSearchFieldDataSource> dataSource;
+@property(nonatomic,getter=isEnabled) BOOL enabled;
 
 - (void)reloadData;
 - (NSString *)inputText;
