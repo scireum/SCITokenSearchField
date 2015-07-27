@@ -369,6 +369,11 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     self.inputTextField.placeholder = [self.tokens count] ? nil : self.placeholderText;
 }
 
+- (void)setText:(NSString *)text
+{
+    self.inputTextField.text = text;
+}
+
 #pragma mark - Data Source
 
 - (NSString *)titleForTokenAtIndex:(NSUInteger)index

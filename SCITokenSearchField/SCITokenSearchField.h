@@ -62,6 +62,7 @@
 
 - (void)setColorScheme:(UIColor *)color;
 - (void)setColorSchemeForBubbles:(UIColor *)color;
+- (void)setText:(NSString *)text;
 
 @end
 
