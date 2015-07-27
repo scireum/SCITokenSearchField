@@ -13,19 +13,8 @@
 		43146B5719E7FDB0007325A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43146B5519E7FDB0007325A8 /* Main.storyboard */; };
 		43146B5919E7FDB0007325A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43146B5819E7FDB0007325A8 /* Images.xcassets */; };
 		43146B5C19E7FDB0007325A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43146B5A19E7FDB0007325A8 /* LaunchScreen.xib */; };
-		43146B6819E7FDB0007325A8 /* SCITokenSearchFieldExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43146B6719E7FDB0007325A8 /* SCITokenSearchFieldExampleTests.m */; };
 		72C290139204718799F85EC0 /* libPods-SCITokenSearchFieldExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6F7824EE9C8F78B8ED88841 /* libPods-SCITokenSearchFieldExample.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		43146B6219E7FDB0007325A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 43146B4019E7FDB0007325A8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 43146B4719E7FDB0007325A8;
-			remoteInfo = SCITokenSearchFieldExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0CB98FA5D6068E948150DF1D /* Pods-SCITokenSearchFieldExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCITokenSearchFieldExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -39,9 +28,6 @@
 		43146B5619E7FDB0007325A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43146B5819E7FDB0007325A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		43146B5B19E7FDB0007325A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		43146B6119E7FDB0007325A8 /* SCITokenSearchFieldExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCITokenSearchFieldExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43146B6619E7FDB0007325A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43146B6719E7FDB0007325A8 /* SCITokenSearchFieldExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCITokenSearchFieldExampleTests.m; sourceTree = "<group>"; };
 		F6F7824EE9C8F78B8ED88841 /* libPods-SCITokenSearchFieldExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCITokenSearchFieldExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC39AFECF03C02730C8EE250 /* Pods-SCITokenSearchFieldExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCITokenSearchFieldExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,13 +38,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				72C290139204718799F85EC0 /* libPods-SCITokenSearchFieldExample.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		43146B5E19E7FDB0007325A8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				43146B4A19E7FDB0007325A8 /* SCITokenSearchFieldExample */,
-				43146B6419E7FDB0007325A8 /* SCITokenSearchFieldExampleTests */,
 				43146B4919E7FDB0007325A8 /* Products */,
 				3DA14A3850BEC02B35C8AEDC /* Pods */,
 				6C7FE481565D60C8BDE37D1C /* Frameworks */,
@@ -89,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				43146B4819E7FDB0007325A8 /* SCITokenSearchFieldExample.app */,
-				43146B6119E7FDB0007325A8 /* SCITokenSearchFieldExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,23 +91,6 @@
 			children = (
 				43146B4C19E7FDB0007325A8 /* Info.plist */,
 				43146B4D19E7FDB0007325A8 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		43146B6419E7FDB0007325A8 /* SCITokenSearchFieldExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				43146B6719E7FDB0007325A8 /* SCITokenSearchFieldExampleTests.m */,
-				43146B6519E7FDB0007325A8 /* Supporting Files */,
-			);
-			path = SCITokenSearchFieldExampleTests;
-			sourceTree = "<group>";
-		};
-		43146B6519E7FDB0007325A8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				43146B6619E7FDB0007325A8 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -165,24 +125,6 @@
 			productReference = 43146B4819E7FDB0007325A8 /* SCITokenSearchFieldExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		43146B6019E7FDB0007325A8 /* SCITokenSearchFieldExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 43146B6E19E7FDB0007325A8 /* Build configuration list for PBXNativeTarget "SCITokenSearchFieldExampleTests" */;
-			buildPhases = (
-				43146B5D19E7FDB0007325A8 /* Sources */,
-				43146B5E19E7FDB0007325A8 /* Frameworks */,
-				43146B5F19E7FDB0007325A8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				43146B6319E7FDB0007325A8 /* PBXTargetDependency */,
-			);
-			name = SCITokenSearchFieldExampleTests;
-			productName = SCITokenSearchFieldExampleTests;
-			productReference = 43146B6119E7FDB0007325A8 /* SCITokenSearchFieldExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -194,10 +136,6 @@
 				TargetAttributes = {
 					43146B4719E7FDB0007325A8 = {
 						CreatedOnToolsVersion = 6.0.1;
-					};
-					43146B6019E7FDB0007325A8 = {
-						CreatedOnToolsVersion = 6.0.1;
-						TestTargetID = 43146B4719E7FDB0007325A8;
 					};
 				};
 			};
@@ -212,12 +150,9 @@
 			mainGroup = 43146B3F19E7FDB0007325A8;
 			productRefGroup = 43146B4919E7FDB0007325A8 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				43146B4719E7FDB0007325A8 /* SCITokenSearchFieldExample */,
-				43146B6019E7FDB0007325A8 /* SCITokenSearchFieldExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,13 +165,6 @@
 				43146B5719E7FDB0007325A8 /* Main.storyboard in Resources */,
 				43146B5C19E7FDB0007325A8 /* LaunchScreen.xib in Resources */,
 				43146B5919E7FDB0007325A8 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		43146B5F19E7FDB0007325A8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,23 +214,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43146B5D19E7FDB0007325A8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				43146B6819E7FDB0007325A8 /* SCITokenSearchFieldExampleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		43146B6319E7FDB0007325A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 43146B4719E7FDB0007325A8 /* SCITokenSearchFieldExample */;
-			targetProxy = 43146B6219E7FDB0007325A8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		43146B5519E7FDB0007325A8 /* Main.storyboard */ = {
@@ -426,40 +338,6 @@
 			};
 			name = Release;
 		};
-		43146B6F19E7FDB0007325A8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SCITokenSearchFieldExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCITokenSearchFieldExample.app/SCITokenSearchFieldExample";
-			};
-			name = Debug;
-		};
-		43146B7019E7FDB0007325A8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SCITokenSearchFieldExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCITokenSearchFieldExample.app/SCITokenSearchFieldExample";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -477,15 +355,6 @@
 			buildConfigurations = (
 				43146B6C19E7FDB0007325A8 /* Debug */,
 				43146B6D19E7FDB0007325A8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		43146B6E19E7FDB0007325A8 /* Build configuration list for PBXNativeTarget "SCITokenSearchFieldExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				43146B6F19E7FDB0007325A8 /* Debug */,
-				43146B7019E7FDB0007325A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
