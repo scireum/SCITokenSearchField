@@ -20,20 +20,6 @@
                ReferencedContainer = "container:SCITokenSearchField.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43146B6019E7FDB0007325A8"
-               BuildableName = "SCITokenSearchFieldExampleTests.xctest"
-               BlueprintName = "SCITokenSearchFieldExampleTests"
-               ReferencedContainer = "container:SCITokenSearchField.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
