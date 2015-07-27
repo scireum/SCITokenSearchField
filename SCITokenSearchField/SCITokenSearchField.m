@@ -211,7 +211,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     CGFloat inputTextFieldWidth = self.scrollView.contentSize.width - *currentX - SCITokenSearchFieldDefaultMagnifyingGlassPadding - SCITokenSearchFieldDefaultTokenPadding - SCITokenSearchFieldDefaultBubblePadding;
 
     VENBackspaceTextField *inputTextField = self.inputTextField;
-    inputTextField.text = @"";
     inputTextField.frame = CGRectMake(*currentX, 0, inputTextFieldWidth, [self heightForTextField]);
     inputTextField.tintColor = self.colorScheme;
     [self.scrollView addSubview:inputTextField];
@@ -400,6 +399,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     if ([self.delegate respondsToSelector:@selector(tokenSearchField:didEnterText:)]) {
         if ([textField.text length]) {
             [self.delegate tokenSearchField:self didEnterText:textField.text];
+            textField.text = @"";
         }
     }
     return NO;
