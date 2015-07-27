@@ -3,6 +3,5 @@ before_install:
 - gem i cocoapods --no-ri --no-rdoc
 - brew uninstall xctool; brew install xctool --HEAD;
 install: pod update
-xcode_workspace: SCITokenSearchField.xcworkspace
-xcode_scheme: SCITokenSearchField
-xcode_sdk: iphonesimulator
+script:
+  -  xctool build -workspace SCITokenSearchField.xcworkspace -scheme SCITokenSearchField -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
