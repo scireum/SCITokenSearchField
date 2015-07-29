@@ -1,6 +1,6 @@
 PODS:
   - FrameAccessor (1.3.2)
-  - SCITokenSearchField (1.0.8):
+  - SCITokenSearchField (1.0.9):
     - FrameAccessor (~> 1.0)
 
 DEPENDENCIES:
@@ -12,6 +12,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FrameAccessor: 0f7ba6ce37be9a5d0302a27c731dca70af8d438b
-  SCITokenSearchField: 767cebdab0c9c540d0ad55b6d04686e83c449423
+  SCITokenSearchField: 1cd312e3c5c9052e95b3f4370273806fe2b9ca5a
 
 COCOAPODS: 0.38.2
