@@ -47,7 +47,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 @property (nonatomic) CGFloat originWidth;
 @property (nonatomic, assign) BOOL ignoreTokenSearchFieldDidBeginEditing;
 @property (nonatomic, assign) BOOL shouldTokenSearchFieldDidBeginEditingCalled;
-
+@property (nonatomic) NSInteger lastNumberOfTokens;
 @end
 
 
@@ -113,6 +113,10 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 - (void)reloadData
 {
+    if(self.numberOfTokens > self.lastNumberOfTokens){
+        self.inputTextField.text = @""; //clear the input field if we added this as a new token
+    }
+    
     BOOL inputFieldShouldBecomeFirstResponder = self.inputTextField.isFirstResponder;
 
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -132,6 +136,8 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     if (inputFieldShouldBecomeFirstResponder) {
         [self inputTextFieldBecomeFirstResponder];
     }
+    
+    self.lastNumberOfTokens = self.numberOfTokens;
 }
 
 - (void)setPlaceholderText:(NSString *)placeholderText
@@ -399,7 +405,6 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
     if ([self.delegate respondsToSelector:@selector(tokenSearchField:didEnterText:)]) {
         if ([textField.text length]) {
             [self.delegate tokenSearchField:self didEnterText:textField.text];
-            textField.text = @"";
         }
     }
     return NO;
