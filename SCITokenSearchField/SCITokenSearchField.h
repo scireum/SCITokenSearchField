@@ -29,6 +29,7 @@
 - (void)tokenSearchField:(SCITokenSearchField *)tokenSearchField didDeleteTokenAtIndex:(NSUInteger)index;
 - (void)tokenSearchField:(SCITokenSearchField *)tokenSearchField didChangeText:(NSString *)text;
 - (void)tokenSearchFieldDidBeginEditing:(SCITokenSearchField *)tokenSearchField;
+- (void)tokenSearchFieldDidEndEditing:(SCITokenSearchField *)tokenSearchField;
 @end
 
 @protocol SCITokenSearchFieldDataSource <NSObject>

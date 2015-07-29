@@ -433,6 +433,9 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.shouldTokenSearchFieldDidBeginEditingCalled = !self.ignoreTokenSearchFieldDidBeginEditing;
+    if([self.delegate respondsToSelector:@selector(tokenSearchFieldDidEndEditing:)]) {
+        [self.delegate tokenSearchFieldDidEndEditing:self];
+    }
 }
 
 #pragma mark - VENBackspaceTextFieldDelegate
