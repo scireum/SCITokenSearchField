@@ -288,6 +288,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
         _inputTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _inputTextField.tintColor = self.colorScheme;
         _inputTextField.delegate = self;
+        _inputTextField.returnKeyType = UIReturnKeySearch;
         _inputTextField.placeholder = self.placeholderText;
         _inputTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [_inputTextField addTarget:self action:@selector(inputTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
