@@ -6,12 +6,18 @@ PODS:
 DEPENDENCIES:
   - SCITokenSearchField (from `.`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FrameAccessor
+
 EXTERNAL SOURCES:
   SCITokenSearchField:
-    :path: .
+    :path: "."
 
 SPEC CHECKSUMS:
   FrameAccessor: 0f7ba6ce37be9a5d0302a27c731dca70af8d438b
-  SCITokenSearchField: 1cd312e3c5c9052e95b3f4370273806fe2b9ca5a
+  SCITokenSearchField: 7412fca6fe77d7e8e9ef83a4f217dcd4674a26a5
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: f2ad46500adba14218832a0cfdb5436f87a3355f
+
+COCOAPODS: 1.5.3
