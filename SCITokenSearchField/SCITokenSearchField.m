@@ -63,6 +63,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     [self setUpInit];
 }
 
