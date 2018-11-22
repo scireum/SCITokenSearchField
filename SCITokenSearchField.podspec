@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'SCITokenSearchField'
-  s.version      = '1.0.9'
+  s.version      = '1.1.0'
   s.summary      = 'Token SearchField'
   s.description  = <<-DESC
                  Token field with UISearchBar look.
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => 'https://github.com/scireum/SCITokenSearchField.git', :tag => "#{s.version}" }
   s.source_files = 'SCITokenSearchField/**/*.{h,m}'
   s.resources   = ["SCITokenSearchField/**/*.{xib,png}"]
-  s.dependency 'FrameAccessor', '~> 1.0'
-  s.platform     = :ios, '7.0'
+  s.dependency 'FrameAccessor', '~> 2.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
 end

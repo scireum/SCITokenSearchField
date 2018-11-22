@@ -13,11 +13,11 @@
 		43146B5719E7FDB0007325A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43146B5519E7FDB0007325A8 /* Main.storyboard */; };
 		43146B5919E7FDB0007325A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43146B5819E7FDB0007325A8 /* Images.xcassets */; };
 		43146B5C19E7FDB0007325A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43146B5A19E7FDB0007325A8 /* LaunchScreen.xib */; };
-		72C290139204718799F85EC0 /* libPods-SCITokenSearchFieldExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6F7824EE9C8F78B8ED88841 /* libPods-SCITokenSearchFieldExample.a */; };
+		9A078F138BA857380969E574 /* Pods_SCITokenSearchFieldExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E438736EFA47ED00D2ACF84B /* Pods_SCITokenSearchFieldExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0CB98FA5D6068E948150DF1D /* Pods-SCITokenSearchFieldExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCITokenSearchFieldExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample.debug.xcconfig"; sourceTree = "<group>"; };
+		30CADF1994BD8D3557D2A372 /* Pods-SCITokenSearchFieldExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCITokenSearchFieldExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample.debug.xcconfig"; sourceTree = "<group>"; };
 		43146B4819E7FDB0007325A8 /* SCITokenSearchFieldExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCITokenSearchFieldExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43146B4C19E7FDB0007325A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43146B4D19E7FDB0007325A8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -28,8 +28,8 @@
 		43146B5619E7FDB0007325A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43146B5819E7FDB0007325A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		43146B5B19E7FDB0007325A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		F6F7824EE9C8F78B8ED88841 /* libPods-SCITokenSearchFieldExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCITokenSearchFieldExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC39AFECF03C02730C8EE250 /* Pods-SCITokenSearchFieldExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCITokenSearchFieldExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample.release.xcconfig"; sourceTree = "<group>"; };
+		BF53E07D16B51453D8276EF6 /* Pods-SCITokenSearchFieldExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCITokenSearchFieldExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample.release.xcconfig"; sourceTree = "<group>"; };
+		E438736EFA47ED00D2ACF84B /* Pods_SCITokenSearchFieldExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCITokenSearchFieldExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,29 +37,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72C290139204718799F85EC0 /* libPods-SCITokenSearchFieldExample.a in Frameworks */,
+				9A078F138BA857380969E574 /* Pods_SCITokenSearchFieldExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3DA14A3850BEC02B35C8AEDC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0CB98FA5D6068E948150DF1D /* Pods-SCITokenSearchFieldExample.debug.xcconfig */,
-				FC39AFECF03C02730C8EE250 /* Pods-SCITokenSearchFieldExample.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		43146B3F19E7FDB0007325A8 = {
 			isa = PBXGroup;
 			children = (
 				43146B4A19E7FDB0007325A8 /* SCITokenSearchFieldExample */,
 				43146B4919E7FDB0007325A8 /* Products */,
-				3DA14A3850BEC02B35C8AEDC /* Pods */,
-				6C7FE481565D60C8BDE37D1C /* Frameworks */,
+				87978CC997A22FE9402F20B4 /* Pods */,
+				547F0892CC20ACC9CA7BC368 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,12 +86,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6C7FE481565D60C8BDE37D1C /* Frameworks */ = {
+		547F0892CC20ACC9CA7BC368 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F6F7824EE9C8F78B8ED88841 /* libPods-SCITokenSearchFieldExample.a */,
+				E438736EFA47ED00D2ACF84B /* Pods_SCITokenSearchFieldExample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		87978CC997A22FE9402F20B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30CADF1994BD8D3557D2A372 /* Pods-SCITokenSearchFieldExample.debug.xcconfig */,
+				BF53E07D16B51453D8276EF6 /* Pods-SCITokenSearchFieldExample.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,11 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43146B6B19E7FDB0007325A8 /* Build configuration list for PBXNativeTarget "SCITokenSearchFieldExample" */;
 			buildPhases = (
-				7DEA59AD7220A6310FD5AF72 /* Check Pods Manifest.lock */,
+				2936AA296401AD0A41526D47 /* [CP] Check Pods Manifest.lock */,
 				43146B4419E7FDB0007325A8 /* Sources */,
 				43146B4519E7FDB0007325A8 /* Frameworks */,
 				43146B4619E7FDB0007325A8 /* Resources */,
-				3765A3178FDADD6B6245C140 /* Copy Pods Resources */,
+				E551F583D9D88E5924F2A2DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,7 +131,7 @@
 		43146B4019E7FDB0007325A8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = scireum;
 				TargetAttributes = {
 					43146B4719E7FDB0007325A8 = {
@@ -171,34 +171,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3765A3178FDADD6B6245C140 /* Copy Pods Resources */ = {
+		2936AA296401AD0A41526D47 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SCITokenSearchFieldExample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7DEA59AD7220A6310FD5AF72 /* Check Pods Manifest.lock */ = {
+		E551F583D9D88E5924F2A2DD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FrameAccessor/FrameAccessor.framework",
+				"${BUILT_PRODUCTS_DIR}/SCITokenSearchField/SCITokenSearchField.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FrameAccessor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCITokenSearchField.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -244,20 +260,32 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -286,13 +314,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -300,6 +338,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -316,11 +355,12 @@
 		};
 		43146B6C19E7FDB0007325A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0CB98FA5D6068E948150DF1D /* Pods-SCITokenSearchFieldExample.debug.xcconfig */;
+			baseConfigurationReference = 30CADF1994BD8D3557D2A372 /* Pods-SCITokenSearchFieldExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SCITokenSearchFieldExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.scireum.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
@@ -328,11 +368,12 @@
 		};
 		43146B6D19E7FDB0007325A8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC39AFECF03C02730C8EE250 /* Pods-SCITokenSearchFieldExample.release.xcconfig */;
+			baseConfigurationReference = BF53E07D16B51453D8276EF6 /* Pods-SCITokenSearchFieldExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SCITokenSearchFieldExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.scireum.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
