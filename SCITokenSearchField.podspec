@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.source_files = 'SCITokenSearchField/**/*.{h,m}'
   s.resources   = ["SCITokenSearchField/**/*.{xib,png}"]
   s.dependency 'FrameAccessor', '~> 2.0'
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
 end
