@@ -32,7 +32,8 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
+    NSBundle* bundle = [NSBundle bundleForClass:[self class]];
+    self = [[bundle loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
     if (self) {
         [self setUpInit];
     }

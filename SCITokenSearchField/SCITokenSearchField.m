@@ -292,7 +292,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
         _inputTextField.placeholder = self.placeholderText;
         _inputTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [_inputTextField addTarget:self action:@selector(inputTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        UIImage *clearButtonImage = [UIImage imageNamed:@"clear_Button"];
+        UIImage *clearButtonImage = [UIImage imageNamed:@"clear_Button" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [clearButton setImage:clearButtonImage forState:UIControlStateNormal];
         [clearButton setFrame:CGRectMake(0, 0, clearButtonImage.size.width, clearButtonImage.size.width)];
@@ -317,7 +317,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 
 - (UIView *)magnifyingGlassView {
     if(!_magnifyingGlassView){
-        UIImage *magnifyingGlassImage = [UIImage imageNamed:@"magnifying_glass"];
+        UIImage *magnifyingGlassImage = [UIImage imageNamed:@"magnifying_glass" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
         _magnifyingGlassView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, magnifyingGlassImage.size.width, magnifyingGlassImage.size.height)];
         [_magnifyingGlassView setBackgroundColor:[UIColor colorWithPatternImage:magnifyingGlassImage]];
     }
