@@ -201,7 +201,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FrameAccessor/FrameAccessor.framework",
 				"${BUILT_PRODUCTS_DIR}/SCITokenSearchField/SCITokenSearchField.framework",
 			);
@@ -214,7 +214,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SCITokenSearchFieldExample/Pods-SCITokenSearchFieldExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
