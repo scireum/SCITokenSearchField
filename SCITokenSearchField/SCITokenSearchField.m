@@ -84,7 +84,7 @@ static const CGFloat SCITokenSearchFieldDefaultBubblePadding            = 5.0;
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:)name:UIDeviceOrientationDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:)name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
 -(void)removeFromSuperview {
