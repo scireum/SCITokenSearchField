@@ -7,7 +7,7 @@ DEPENDENCIES:
   - SCITokenSearchField (from `.`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FrameAccessor
 
 EXTERNAL SOURCES:
@@ -20,4 +20,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2b78315e102662e1a1136c9b1529858b56de4976
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.8.4
