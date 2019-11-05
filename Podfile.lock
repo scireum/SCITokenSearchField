@@ -1,13 +1,13 @@
 PODS:
   - FrameAccessor (2.0)
-  - SCITokenSearchField (1.1.0):
+  - SCITokenSearchField (1.1.1):
     - FrameAccessor (~> 2.0)
 
 DEPENDENCIES:
   - SCITokenSearchField (from `.`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FrameAccessor
 
 EXTERNAL SOURCES:
@@ -16,8 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FrameAccessor: 443a13e58e23a10ff22180da0897b28c3f6abf66
-  SCITokenSearchField: 3997ca9ccbb5eb1b0912ce0170b5714f3d764549
+  SCITokenSearchField: c6bacaa85ac06ba17c9e37f31d9dc7e9e10fae0e
 
 PODFILE CHECKSUM: 2b78315e102662e1a1136c9b1529858b56de4976
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.8.4
